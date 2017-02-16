@@ -4,7 +4,7 @@ Sujet issu du [TP de tcoupin](https://github.com/tcoupin/tp_asi_ensg)
 
 ## Le projet
 
-Nous avons 3,5 jours pour jouer avec une vingtaines de RaspeberryPi :)
+Nous avons 3,5 jours pour jouer avec une vingtaine de RaspeberryPi :)
 
 ### But du jeu : mettre en place une IDG (as a Service)
 
