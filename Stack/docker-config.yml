@@ -13,4 +13,3 @@ services:
     image: hypriot/rpi-mysql
     deploy:
       replicas: 2
-      
