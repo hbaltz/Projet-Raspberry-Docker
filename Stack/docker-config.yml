@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  proxy:
+    image: hypriot/rpi-haproxy
+    networks:
+      - proxy
+      - default
+    deploy:
+      replicas: 4
+    ports:
+      - "8080:80"
+
+networks:
+  default:
+    external: false
+  proxy:
+    external: true
