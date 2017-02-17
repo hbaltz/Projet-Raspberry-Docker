@@ -1,15 +1,11 @@
 version: '3'
 
 services:
-
   proxy:
     image: hypriot/rpi-haproxy
     deploy:
       replicas: 4
+      placement:
+        constraints: [node.role == manager]
     ports:
       - "8080:80"
-
-  sql:
-    image: hypriot/rpi-mysql
-    deploy:
-      replicas: 2
