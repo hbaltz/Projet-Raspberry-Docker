@@ -22,48 +22,21 @@ Nécessaire :
 
 ## Containers à déployer
 
-### Docker data
-
-Sert à monter les volumes
-
---> rok4data
-```sh
-prof@ubuntu:docker run --name=rok4data -v /rok4/config/layers -v /rok4/config/pyramids rok4/rok4-datatest true
-prof@ubuntu:~/work/tp1/docker-rok4-solo$ docker volume ls
-DRIVER              VOLUME NAME
-local               1c9599e0739d84177e38a94aafef410a322d05d2b3ce3b75e16de783a48e072d
-local               5f3dda86e10c80381ba1555f5111b46ed3c63e5e6f54a511efb2261592abf955
-
-
-
-
-
-prof@ubuntu:~/work/tp1/docker-rok4-solo$ docker run -it -d --rm --volumes-from rok4data --publish=9000:9000  rok4/rok4:fastcgi
-35ab35d65194f92ba8c4b0cf93c3ad4f7709ce0578bb992207f2a304c468325e
-
-prof@ubuntu:~/work/tp1/docker-rok4-solo$ docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                    NAMES
-35ab35d65194        rok4/rok4:fastcgi   "/bin/sh -c /rok4/..."   About a minute ago   Up About a minute   0.0.0.0:9000->9000/tcp   wonderful_hodgkin
-
-```
 
 ### Docker Rok4 - volume image 
 
 #### Data
 
 ``` sh
-$ git clone https://github.com/rok4/docker-rok4datatest.git
-```
-
-Modifier la base du container : FROM resin/rpi-raspbian:jessie
-
-``` sh
+$ git clone https://github.com/Nilct/docker-rok4datatest.git
+$ cd docker-rok4datatest
 $ docker build -t rpirok4data .
 $ docker images
 REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
 rpirok4data                 latest              3600e7934363        2 minutes ago       163 MB
 $ docker run --name=rok4data -v /rok4/config/layers -v /rok4/config/pyramids rpirok4data true
 ```
+
 #### Rok4
 
 ``` sh
@@ -73,94 +46,26 @@ $ docker build -t rpirok4 .
 $ docker images
 REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
 rpirok4                     latest              5d838dcd5c21        2 minutes ago       207 MB
-$ 
+$ docker run -d --rm --volumes-from rpirok4data --publish=9000:9000  rpirok4
 ```
+
+? docker run -d --publish 9000:9000 --volumes-from rpirok4data --env ROK4_SERVICE_TITLE=docker-rok4 rpirok4
+
 #### nginx
 
 ``` sh
 $ git clone https://github.com/Nilct/nginx-proxy
+$ cd nginx-proxy
+$ docker build -t rpinginx .
+$ docker images
 ```
 
 To run it:
 
-$ docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro nginxrok4
+$ docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro rpinginx
 Then start any containers you want proxied with an env var VIRTUAL_HOST=subdomain.youdomain.com
 
 $ docker run -e VIRTUAL_HOST=foo.bar.com  ...
 The containers being proxied must expose the port to be proxied, either by using the EXPOSE directive in their Dockerfile or by using the --expose flag to docker run or docker create.
 
-
-
-
-
-
-
-``` sh
-FROM rok4/rok4:fastcgi
-
-ENV http_proxy http://10.0.4.2:3128
-
-ADD default.template /etc/nginx/sites-available/default.template
-ADD startNginx.sh /rok4/startNginx.sh
-
-RUN chmod -R 777 /rok4/* && apt-get install -y nginx
-
-CMD /rok4/startNginx.sh
-```
-
-``` sh
-$ docker run -it -d --rm --volumes-from rok4data --name=rok4fcgi --publish=9000:9000  rok4/rok4:fastcgi
-```
-
-
-
-## Test sur rpi
-
-$ssh pirate@piensg010
-(hypriot)
-
-Test nginx-arm
-ok
-
-
-Test hypriot
-docker run -d -p 80:80 hypriot/rpi-busybox-httpd
-ok
-
-traefik pour loadbalancer les serveur rok4
-pas testé:
-
-test httpd
-$ nano docker-compose.yml
-HypriotOS/armv7: pirate@piensg010 in ~/test_httpd
-$ docker-compose up
-
-
-
-### Procédure
-
-* Créer les images nécessaires : data (plus tard car montage NFS), rok4, nginx pour arm
-* Lancer les dockers 1 par 1
-
-#### Image
-
-A partir de l'image [tcoupin/rok4-build](https://hub.docker.com/r/tcoupin/rok4-build/~/dockerfile/)
-* ajouter le proxy `ENV http_proxy http://10.0.4.2:3128`
-* construire l'image ` docker build -t rpirok4 .`
-* lancer l'image 
-
-
-
-
-
-
-#### Compiler
-Compiler rok4 sur arm <-- nope !
-
-``` sh
-HypriotOS/armv7: pirate@piensg010 in ~/Dockers_rok4
-$ mkdir rok4
-HypriotOS/armv7: pirate@piensg010 in ~/Dockers_rok4
-$ docker run -t -v $(pwd)/rok4:/rok4 tcoupin/rok4-build:arm
-```
 
