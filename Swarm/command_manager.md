@@ -37,6 +37,7 @@ docker swarm join-token manager
 docker service create --replicas 1 --name helloworld alpine ping docker.com
 ```
 
+
 * The docker service create command creates the service.
 * The --name flag names the service helloworld.
 * The --replicas flag specifies the desired state of 1 running instance.
@@ -52,9 +53,9 @@ docker service scale NAME_SERVICE=NB_SCALE
 docker service ls
 ```
 
-## Inspect a service 
+## Inspect a service
 ```
-docker service inspect helloworld 
+docker service inspect helloworld
 
 OR
 
@@ -85,4 +86,15 @@ docker node promote [IDS_NODES]
 ## Demote nodes
 ```
 Demote node promote [IDS_NODES]
+```
+
+# Launch a httpd service
+```
+docker service create --replicas 1 --name httpd -p 8080:80 hypriot/rpi-busybox-httpd
+```
+
+# Update the port used by a service
+```
+docker service update --publish-rm 8080 httpd
+docker service update --publish-add 8081:80 httpd
 ```
