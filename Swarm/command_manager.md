@@ -43,6 +43,11 @@ docker service create --replicas 1 --name helloworld alpine ping docker.com
 * The --replicas flag specifies the desired state of 1 running instance.
 * The arguments alpine ping docker.com define the service as an Alpine Linux container that executes the command ping docker.com.
 
+## Scale a service
+```
+docker service scale NAME_SERVICE=NB_SCALE
+```
+
 ## List the running services
 ```
 docker service ls
@@ -60,6 +65,22 @@ docker service inspect --pretty helloworld
 ## See which nodes are running a service
 ```
 docker service ps helloworld
+```
+
+## Delete a node in the list when a node leave the cluster
+```
+docker node rm ID_NODE  
+docker node rm --force ID_NODE
+```
+
+## Promote nodes
+```
+docker node promote [IDS_NODES]
+```
+
+## Demote nodes
+```
+Demote node promote [IDS_NODES]
 ```
 
 # Launch a httpd service
