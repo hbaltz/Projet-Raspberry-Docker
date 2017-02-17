@@ -18,9 +18,41 @@ Nécessaire :
 * [rok4] (https://hub.docker.com/u/rok4/) propose 2 containers :
     * le serveur nginx rok4
     * les données
-* [tcoupin/rok4-build](https://hub.docker.com/r/tcoupin/rok4-build/~/dockerfile/) propose des images pour arm
+    
+## Docker compose
 
-## Containers à déployer
+Containers à déployer sur des marchines intel... si cela fonctionne à adapter pour utiliser / concevoir des conteneurs pour **arm**.
+
+<https://github.com/rok4/docker-rok4-with-data>
+
+> ** Notes ** : Les containers *data* servent à créer les volumes pour les exploiter ensuite
+
+Résultat:
+```
+prof@ubuntu:~/work/tp1/docker-rok4-with-data$ docker-compose up
+Creating dockerrok4withdata_data-scan1000_1
+Creating dockerrok4withdata_data-bdortho-d075_1
+Creating dockerrok4withdata_rok4_1
+Creating dockerrok4withdata_nginx_1
+Attaching to dockerrok4withdata_data-scan1000_1, dockerrok4withdata_data-bdortho-d075_1, dockerrok4withdata_rok4_1, dockerrok4withdata_nginx_1
+data-scan1000_1      | Data SCAN1000_PYR-JPG_FXX_PM ready !
+data-bdortho-d075_1  | Data ORTHO_JPG_PM_D075 ready !
+rok4_1               | /rok4/startNginx.sh: 7: /rok4/startNginx.sh: source: not found
+rok4_1               | /rok4/startNginx.sh: 8: /rok4/startNginx.sh: source: not found
+rok4_1               | Lancement du serveur rok4[44]
+dockerrok4withdata_data-scan1000_1 exited with code 0
+rok4_1               | Chargement des parametres techniques depuis /rok4/config/server.conf
+rok4_1               | Env : PROJ_LIB = /rok4/config/proj
+rok4_1               | Element <serverPort> : Lancement interne impossible (Apache, spawn-fcgi)
+rok4_1               | Envoi des messages dans la sortie du logger
+dockerrok4withdata_data-bdortho-d075_1 exited with code 0
+```
+
+Accès web
+```
+http://127.0.0.1:8080/rok4?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&LAYERS=ORTHO_JPG_PM_D075&STYLES=normal&CRS=EPSG:3857&WIDTH=3000&HEIGHT=3000&BBOX=242152,6229923,291072,6264167&FORMAT=image/png
+```
+## Docker Images
 
 ### Docker data
 
@@ -34,10 +66,6 @@ DRIVER              VOLUME NAME
 local               1c9599e0739d84177e38a94aafef410a322d05d2b3ce3b75e16de783a48e072d
 local               5f3dda86e10c80381ba1555f5111b46ed3c63e5e6f54a511efb2261592abf955
 
-
-
-
-
 prof@ubuntu:~/work/tp1/docker-rok4-solo$ docker run -it -d --rm --volumes-from rok4data --publish=9000:9000  rok4/rok4:fastcgi
 35ab35d65194f92ba8c4b0cf93c3ad4f7709ce0578bb992207f2a304c468325e
 
@@ -47,53 +75,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 ```
 
-### Docker Rok4 - volume image 
-
-#### Data
-
-``` sh
-$ git clone https://github.com/rok4/docker-rok4datatest.git
-```
-
-Modifier la base du container : FROM resin/rpi-raspbian:jessie
-
-``` sh
-$ docker build -t rpirok4data .
-$ docker images
-REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
-rpirok4data                 latest              3600e7934363        2 minutes ago       163 MB
-$ docker run --name=rok4data -v /rok4/config/layers -v /rok4/config/pyramids rpirok4data true
-```
-#### Rok4
-
-``` sh
-$ git clone https://github.com/Nilct/docker-rok4.git
-$ cd docker-rok4
-$ docker build -t rpirok4 .
-$ docker images
-REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
-rpirok4                     latest              5d838dcd5c21        2 minutes ago       207 MB
-$ 
-```
-#### nginx
-
-``` sh
-$ git clone https://github.com/Nilct/nginx-proxy
-```
-
-To run it:
-
-$ docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro nginxrok4
-Then start any containers you want proxied with an env var VIRTUAL_HOST=subdomain.youdomain.com
-
-$ docker run -e VIRTUAL_HOST=foo.bar.com  ...
-The containers being proxied must expose the port to be proxied, either by using the EXPOSE directive in their Dockerfile or by using the --expose flag to docker run or docker create.
-
-
-
-
-
-
+### Docker Rok4
 
 ``` sh
 FROM rok4/rok4:fastcgi
