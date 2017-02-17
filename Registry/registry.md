@@ -43,6 +43,26 @@ Configuration du proxy si problème
 
     sudo systemctl daemon-reload
     sudo systemctl restart docker
+    
+Regarder ou sont les images 
+    
+    docker inspect piensg004:5000/hello-world
+    
+Résultat: 
+
+    "Env": [  
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"  
+            ]  
+            
+ou  
+   
+    "Data": {  
+                "MergedDir": "/var/lib/docker/overlay2/9204188b1a368f1581e60a0105aa29fb9f7decaae114e741031fddf101101eeb/merged",  
+                "UpperDir": "/var/lib/docker/overlay2/9204188b1a368f1581e60a0105aa29fb9f7decaae114e741031fddf101101eeb/diff",  
+                "WorkDir": "/var/lib/docker/overlay2/9204188b1a368f1581e60a0105aa29fb9f7decaae114e741031fddf101101eeb/work"  
+            }  
+         
+    
 
 Lien utile:
 https://docs.docker.com/registry/deploying/
