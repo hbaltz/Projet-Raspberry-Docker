@@ -1,3 +1,6 @@
+Documentation Docker swarm and docker services :
+  - https://docs.docker.com/engine/swarm/swarm-tutorial/
+
 Démo docker :
   - https://www.docker.com/products/docker-swarm#/demo
 
