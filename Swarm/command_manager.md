@@ -66,6 +66,11 @@ docker service inspect --pretty helloworld
 docker service ps helloworld
 ```
 
+## remove a service 
+```
+docker service rm helloworld
+```
+
 ## Delete a node in the list when a node leave the cluster
 ```
 docker node rm ID_NODE  
