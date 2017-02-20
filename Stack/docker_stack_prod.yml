@@ -6,8 +6,8 @@ services:
     volumes:
       - telegraf-config:/etc/telegraf
     network_mode: host
-    roles:
-      - global
+    deploy:
+      mode: global
 
 
 volumes:
