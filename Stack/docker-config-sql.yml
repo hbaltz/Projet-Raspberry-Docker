@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  sql:
+    image: hypriot/rpi-mysql
+    deploy:
+      replicas: 2
