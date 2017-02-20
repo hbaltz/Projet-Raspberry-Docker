@@ -57,6 +57,9 @@ le chemin est écrit dans le fichier [startRok4](https://github.com/tcoupin/dock
 
 `find /rok4/config/pyramids/ -name *.lay -exec cp '{}' /rok4/config/layers/ \;`
 
+Les fichiers à éditer sont maintenant dans le volume géré par Glusterfs : `/mnt/Data/geodata`
+
+
 * bdortho
 
 ``` sh
@@ -66,7 +69,7 @@ $ sudo nano ORTHO_JPG_PM_D075.lay
 
 
 ``` xml
-<pyramid>/rok4/config/pyramids/bdortho/ORTHO_JPG_PM_D075.pyr</pyramid>
+<pyramid>../pyramids/bdortho/ORTHO_JPG_PM_D075.pyr</pyramid>
 ``` 
 
 * scan1000
@@ -78,7 +81,7 @@ $ sudo nano SCAN1000_PYR-JPG_FXX_PM.lay
 
 
 ``` xml
-<pyramid>rok4/config/pyramids/scan1000/SCAN1000_PYR-JPG_FXX_PM.pyr</pyramid>
+<pyramid>../pyramids/scan1000/SCAN1000_PYR-JPG_FXX_PM.pyr</pyramid>
 ```
 
 ### docker-compose.yml pour rok4
@@ -90,23 +93,11 @@ Configuration (docker-compose) :
       - /mnt/Data/geodata/bdortho:/rok4/config/pyramids/bdortho
 ```
 
-Erreur :
-``` sh
-rok4_1  | pid=54 ERROR : Ne peut pas charger le fichier /rok4/config/layers/rok4/config/pyramids/scan1000/SCAN1000_PYR-JPG_FXX_PM.pyr
-rok4_1  | pid=54 ERROR : La pyramide /rok4/config/layers/rok4/config/pyramids/scan1000/SCAN1000_PYR-JPG_FXX_PM.pyr ne peut etre chargee
-rok4_1  | pid=54 ERROR : Ne peut charger le layer: /rok4/config/layers/SCAN1000_PYR-JPG_FXX_PM.lay
-rok4_1  | pid=54 ERROR : Ne peut pas charger le fichier /rok4/config/layers/bdortho/ORTHO_JPG_PM_D075.pyr
-rok4_1  | pid=54 ERROR : La pyramide /rok4/config/layers/bdortho/ORTHO_JPG_PM_D075.pyr ne peut etre chargee
-rok4_1  | pid=54 ERROR : Ne peut charger le layer: /rok4/config/layers/ORTHO_JPG_PM_D075.lay
-rok4_1  | pid=54 ERROR : Aucun layer n'a pu etre charge!
-rok4_1  | pid=54 ERROR : Liste de layers vide
-rok4_1  | pid=54 ERROR : Liste de layers vide
-```
+Vérification :
 
+* Services disponibles 
+`http://172.31.57.69:8080/rok4?service=WMS&request=GetCapabilities`
 
+* Sous QGIS :
+  * Ajouter couche WMS : `http://172.31.57.69:8080/rok4`
 
-
-pid=54 ERROR : Ne peut pas charger le fichier /rok4/config/layers/rok4/config/pyramids/scan1000/SCAN1000_PYR-JPG_FXX_PM.pyr
-rok4_1  | pid=54 ERROR : La pyramide /rok4/config/layers/rok4/config/pyramids/scan1000/SCAN1000_PYR-JPG_FXX_PM.pyr ne peut etre chargee
-rok4_1  | pid=54 ERROR : Ne peut charger le layer: /rok4/config/layers/SCAN1000_PYR-JPG_FXX_PM.lay
-^CGracefully stopping... (press Ctrl+C again to force)
