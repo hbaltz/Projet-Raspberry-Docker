@@ -5,8 +5,8 @@ services:
     image: rok4/rok4:arm-http
     # Exposed ports cannot be accessed publicly over the internet. (published ports are !)
     ports: 
-      - 8080:8080
+      - 8080:80
     volumes:
-      - /mnt/Data/geodata/scan1000:/rok4/config/layers
-      - /mnt/Data/geodata/bdortho:/rok4/config/layers
+      - /mnt/Data/geodata/scan1000:/rok4/config/pyramids/scan1000
+      - /mnt/Data/geodata/bdortho:/rok4/config/pyramids/bdortho
     
