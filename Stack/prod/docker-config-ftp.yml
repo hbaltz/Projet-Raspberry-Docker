@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  proftpd:
+    image: piensg017.ensg.eu:5000/ftp:latest
+    volumes:
+      - /mnt/Data:/data
+      - /mnt/Data/ftp:/users 
+    ports:
+      - "21:21"

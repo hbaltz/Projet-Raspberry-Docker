@@ -96,8 +96,6 @@ Il faut diviser le docker-compose en deux.
 
 Lorsque les volumes seront gérés, il faudra enlever les volumes dans les docker-compose.
 
-Utiliser un fichier conf pour telegraf pour tous les RPI et le déployer manuellement.
-
 
 ### Utilisation de Grafana ###
 
