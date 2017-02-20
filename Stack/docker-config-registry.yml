@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  registryDocker:
+    image: dixonwille/rpi-registry:latest  
+    deploy:
+      replicas: 1
+    ports:
+      - "5000:5000"
+    volumes:
+      - "/mnt/Data/registry:/var/lib/registry"

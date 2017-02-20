@@ -3,7 +3,7 @@ services:
   influxdb:
     image: hypriot/rpi-influxdb:1.1.1
     volumes:
-      - influxdb-data:/data
+      - /mnt/Data/influxdb/data:/data
     ports:
       - "8086:8086"
     environment:
@@ -15,12 +15,9 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - grafana-data:/grafana/data
-      - grafana-config:/grafana/config
+      - /mnt/Data/grafana/data:/grafana/data
+      - /mnt/Data/grafana/config:/grafana/config
     links:
       - influxdb
-volumes:
-  influxdb-data:
-  grafana-data:
-  grafana-config:
+
 
