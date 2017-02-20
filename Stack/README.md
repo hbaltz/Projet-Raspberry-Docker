@@ -16,7 +16,16 @@ Plusieurs solutions existent :
 
 ## Ordre commande des déploiments
 
-Commencer par déployer la stack registry
+Commencer par déployer la stack networks :
+
+```
+docker stack deploy -c docker-config-networks.yml NETWORKS
+```
+
+    Attention, le nom de la stack est à respecter obligatoirement car toutes les autres stacks en dépendent.
+
+
+Puis la stack registry :
 
 ```
 docker stack deploy -c docker-config-registry.yml registry
@@ -39,7 +48,7 @@ scp fichier_conf.yml Nom_DNS_PI:
 docker service rm SERVICE_NAME
 ```
 
-# Procédure pour scaler un service : 
+# Procédure pour scaler un service :
 ```
 docker service scale SERVICE_NAME=NB_REPLICAs
 ```
