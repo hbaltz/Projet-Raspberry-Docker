@@ -104,7 +104,7 @@ En allant sur piensg003:3000, connecter avec admin puis ajouter data source comm
 
 
 Pour visualiser aller sur New Dashboard, ajouter new uis : 
-![Grafana visu](/Images/Grafana_visu.png)
+![Grafana visu](./Images/Grafana_visu.png)
 
 ### Trucs et astuces ###
 - Supprimer tous les conteneurs
