@@ -11,7 +11,7 @@ Lancement du registry dans un volume par défaut
 *--name nom que l'on donne au registry*  
 *-p le port (localhost:5000 pour l'ordi, 5000:5000 por le raspberry Pi)*   
 
-    docker run -d -i --name registryDocker -p 5000:5000 -v /tmp:/mnt/data/registry nimblestratus/rpi-docker-registry  
+    docker run -d -i --name registryDocker -p 5000:5000 -v /mnt/Data/registry:/tmp nimblestratus/rpi-docker-registry  
 
 
 Intégation d'une image dans registry
