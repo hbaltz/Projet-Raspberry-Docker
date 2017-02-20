@@ -8,3 +8,9 @@ services:
     volumes:
       - /mnt/Data/geodata/scan1000:/rok4/config/pyramids/scan1000
       - /mnt/Data/geodata/bdortho:/rok4/config/pyramids/bdortho
+    networks:
+      - front
+
+networks:
+  front:
+    external: true
