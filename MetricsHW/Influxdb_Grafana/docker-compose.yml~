@@ -15,7 +15,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - grafana-data:/grafana/data
+      - grafana-data:/grafan/data
       - grafana-config:/grafana/config
     links:
       - influxdb
