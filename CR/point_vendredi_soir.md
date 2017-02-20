@@ -64,9 +64,10 @@ Une stack qui fonctionne : https://github.com/tcoupin/rasp-workspace/tree/maste
 
 ## Swarm – HB LM
 
-Le swarm est en place, certain RPI sont master, d'autre simple worker.
-Les master peuvent accueillir les requêtes réseaux et les balancent sur les nœuds hébergeant le service (un worker ou un master).
-Les masters élisent un leader qui commande. En cas de chute de ce serveur, un nouveau leader est élu (ça a été tester).
+Le swarm est en place, certains RPI sont masters, d'autres simples workers.
+Les masters peuvent accueillir les requêtes réseaux et les balancent sur les nœuds hébergeant le service (un worker ou un master).
+Les masters élisent un leader qui commande. En cas de chute de ce serveur, un nouveau leader est élu (ça a été testé).
 
 
 > Il me manque le travail de Romain mais je ne sais plus sur quoi il travaillait...
+>> Merci pour ton retour. Romain était focalisé sur le serveur http avec nginx.
