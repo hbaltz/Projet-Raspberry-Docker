@@ -1,7 +1,0 @@
-version: "2.0"
-services:
-  telegraf:
-    image: tcoupin/rpi-telegraf:1.2.1
-    volumes:
-      - ~/mnt/Data/telegraf/config:/etc/telegraf
-    network_mode: host
