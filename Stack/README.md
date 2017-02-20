@@ -1,7 +1,20 @@
 # Création stack
 Utilisation d'une stack par ensemble de services fonctionnant ensemble
 
-## Ordre commande des déploiment
+# Récupérer les fichiers de déploiements
+
+Plusieurs solutions existent :
+- cloner le dépôt git sur les raspberry et aller dans le dossier stack/prod
+```
+    git clone https://github.com/hbaltz/Projet-Raspberry-Docker
+    cd Projet-Raspberry-Docker/Stack/prod
+```
+- avoir les fichiers sur sa machine locale et les envoyer sur un master :
+```
+    scp docker-config-registry.yml piensg017:
+```
+
+## Ordre commande des déploiments
 
 Commencer par déployer la stack registry
 
@@ -19,4 +32,14 @@ start_stacks.sh
 Pour placer les fichers de conf sur une pi
 ```
 scp fichier_conf.yml Nom_DNS_PI:
+```
+
+# Procédure d'arrêt de services
+```
+docker service rm SERVICE_NAME
+```
+
+# Procédure pour scaler un service : 
+```
+docker service scale SERVICE_NAME=NB_REPLICAs
 ```
