@@ -86,6 +86,8 @@ $ sudo nano SCAN1000_PYR-JPG_FXX_PM.lay
 
 ### docker-compose.yml pour rok4
 
+Pour l'instant, l'accès à rok4 n'est pas sécurisé.
+
 Configuration (docker-compose) :
 ``` sh
     volumes:
@@ -96,8 +98,16 @@ Configuration (docker-compose) :
 Vérification :
 
 * Services disponibles 
-`http://172.31.57.69:8080/rok4?service=WMS&request=GetCapabilities`
+`http://172.31.57.69:8092/rok4?service=WMS&request=GetCapabilities`
 
-* Sous QGIS :
-  * Ajouter couche WMS : `http://172.31.57.69:8080/rok4`
+* Requête web
+`http://172.31.57.69:8092/rok4?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&LAYERS=ORTHO_JPG_PM_D075&STYLES=normal&CRS=EPSG:3857&WIDTH=3000&HEIGHT=3000&BBOX=242152,6229923,291072,6264167&FORMAT=image/png`
+
+* Sous QGIS 
+  * Ajouter couche WMS : `http://172.31.57.69:8092/rok4`
+
+C'est la version déployée sur le **registry** et distribuée par **docker swarm**.
+
+### docker-compose.yml - utilisation des variables d'environnement
+
 
