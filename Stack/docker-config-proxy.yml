@@ -2,10 +2,10 @@ version: '3'
 
 services:
   proxy:
-    image: hypriot/rpi-haproxy
+    image: hypriot/rpi-haproxy:latest
     deploy:
       replicas: 4
       placement:
         constraints: [node.role == manager]
     ports:
-      - "8086:80"
+      - "8087:80"
