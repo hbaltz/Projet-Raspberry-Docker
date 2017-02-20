@@ -3,7 +3,7 @@
 ### Pour mettre en place le registry sur un raspberry Pi
 Recherche d'une image Registry pour des Raspberry
 
-    docker pull nimblestratus/rpi-docker-registry
+    docker pull dixonwille/rpi-registry
 
 Lancement du registry dans un volume par défaut  
 *-d pour en mode démon*  
@@ -11,7 +11,7 @@ Lancement du registry dans un volume par défaut
 *--name nom que l'on donne au registry*  
 *-p le port (localhost:5000 pour l'ordi, 5000:5000 por le raspberry Pi)*   
 
-    docker run -d -i --name registryDocker -p 5000:5000 -v /mnt/Data/registry:/tmp nimblestratus/rpi-docker-registry  
+    docker run -d -i --name registryDocker -p 5000:5000 -v /mnt/Data/registry:/var/lib/registry dixonwille/rpi-registry
 
 
 Intégation d'une image dans registry
@@ -71,8 +71,9 @@ Intégation d'une image dans registry
     docker push piensg004.ensg.eu:5000/hello-world
 
 
-Lien utile:
+Liens utiles:
 https://docs.docker.com/registry/deploying/
+https://hub.docker.com/r/dixonwille/rpi-registry/
 
 # Lors de la connection
 
