@@ -11,7 +11,7 @@ Lancement du registry dans un volume par défaut
 *--name nom que l'on donne au registry*  
 *-p le port (localhost:5000 pour l'ordi, 5000:5000 por le raspberry Pi)*   
 
-    docker run -d -i --name registryDocker -p 5000:5000   nimblestratus/rpi-docker-registry  
+    docker run -d -i --name registryDocker -p 5000:5000 -v /tmp:/mnt/data/registry nimblestratus/rpi-docker-registry  
 
 
 Intégation d'une image dans registry
@@ -43,26 +43,33 @@ Configuration du proxy si problème
 
     sudo systemctl daemon-reload
     sudo systemctl restart docker
-    
-Regarder ou sont les images 
-    
-    docker inspect piensg004:5000/hello-world
-    
-Résultat: 
 
-    "Env": [  
-                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"  
-            ]  
-            
-ou  
-   
-    "Data": {  
-                "MergedDir": "/var/lib/docker/overlay2/9204188b1a368f1581e60a0105aa29fb9f7decaae114e741031fddf101101eeb/merged",  
-                "UpperDir": "/var/lib/docker/overlay2/9204188b1a368f1581e60a0105aa29fb9f7decaae114e741031fddf101101eeb/diff",  
-                "WorkDir": "/var/lib/docker/overlay2/9204188b1a368f1581e60a0105aa29fb9f7decaae114e741031fddf101101eeb/work"  
-            }  
-         
-    
+Regarder informations sur les images
+
+    docker inspect piensg004:5000/hello-world
+
+Dossier de montage:  /tmp  
+Création du volume /mnt/data/registry   
+=> tout est fait lors du run !
+
+    docker exec -it registryDocker /bin/bash
+
+Ajout de l'insecure sur le registry  
+
+    sudo nano /etc/systemd/system/docker.service.d/01-main.conf  
+    --insecure-registry piensg004.ensg.eu:5000  
+
+! Attention ne pas oublier de tout redémarrer:  
+
+    sudo systemctl daemon-reload
+    sudo systemctl restart docker
+
+Du coup avec la config du swarm:  
+Intégation d'une image dans registry
+
+    docker tag idhello-world piensg004.ensg.eu:5000/hello-world
+    docker push piensg004.ensg.eu:5000/hello-world
+
 
 Lien utile:
 https://docs.docker.com/registry/deploying/
