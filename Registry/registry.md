@@ -76,4 +76,4 @@ https://docs.docker.com/registry/deploying/
 
 # Lors de la connection
 
-Se servir de l'addrese http://{$Nom_DNS}.ensg.eu:5000
+Se servir de l'addresse http://{$Nom_DNS}.ensg.eu:5000
