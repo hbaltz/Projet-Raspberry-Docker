@@ -1,0 +1,13 @@
+## Error, replicas created but errors
+
+version: '3'
+
+services:
+  sql:
+    image: hypriot/rpi-mysql
+    deploy:
+      replicas: 2
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"

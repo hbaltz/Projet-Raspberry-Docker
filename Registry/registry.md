@@ -39,7 +39,7 @@ Configuration du proxy si problème
     sudo nano 02-http-proxy.conf
 
       Environment="HTTP_PROXY=http://10.0.4.2:3128/"
-      Environment="NO_PROXY=piensg004,127.0.1.1"
+      Environment="NO_PROXY=ensg.eu,127.0.1.1"
 
     sudo systemctl daemon-reload
     sudo systemctl restart docker
@@ -73,3 +73,7 @@ Intégation d'une image dans registry
 
 Lien utile:
 https://docs.docker.com/registry/deploying/
+
+# Lors de la connection
+
+Se servir de l'addrese http://{$Nom_DNS}.ensg.eu:5000
