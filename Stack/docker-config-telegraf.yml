@@ -5,7 +5,6 @@ services:
     image: tcoupin/rpi-telegraf:1.2.1
     volumes:
       - telegraf-config:/etc/telegraf
-    network_mode: host
     deploy:
       mode: global
 
