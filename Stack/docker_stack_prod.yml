@@ -9,5 +9,6 @@ services:
     roles:
       - global
 
+
 volumes:
   telegraf-config:
