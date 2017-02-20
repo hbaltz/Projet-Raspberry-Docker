@@ -5,6 +5,8 @@ services:
     image: piensg017.ensg.eu:5000/ftp:latest
     volumes:
       - /mnt/Data:/data
-      - /mnt/Data/ftp:/users 
+      - /mnt/Data/ftp:/users
+      - /mnt/Data/ftp/conf.d:/proftpd/conf.d
     ports:
       - "21:21"
+      - "5001-5051:50000-50050"
