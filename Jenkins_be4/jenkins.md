@@ -20,3 +20,7 @@ Récupération du token pour l'admin
     docker logs jenkins  
 
 Administration de jenkins sur http://nom_machine:49001/
+
+### Relation  
+
+Mise de l'image de jenkins sur le registry (! lourde)

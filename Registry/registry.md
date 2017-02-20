@@ -75,6 +75,13 @@ Liens utiles:
 https://docs.docker.com/registry/deploying/
 https://hub.docker.com/r/dixonwille/rpi-registry/
 
-# Lors de la connection
+## Lors de la connection
 
 Se servir de l'addresse http://{$Nom_DNS}.ensg.eu:5000
+
+### Relation
+
+### Risques  
+
+Déploiement sur tous les raspberry mais mise en place sur un seul => si plantage pas d'autres registry.  
+Durée de redémarrage assez longue
