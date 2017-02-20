@@ -8,4 +8,4 @@ services:
       placement:
         constraints: [node.role == manager]
     ports:
-      - "8080:80"
+      - "8086:80"
