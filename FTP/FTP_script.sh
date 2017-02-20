@@ -1,5 +1,7 @@
 #!/bin/bash
 
+docker rm proftpd -f
+
 docker images
 docker ps
 
