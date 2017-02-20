@@ -3,5 +3,5 @@ services:
   telegraf:
     image: tcoupin/rpi-telegraf:1.2.1
     volumes:
-      - telegraf-config:/mnt/Data/telegraf/config
+      - ~/mnt/Data/telegraf/config:/etc/telegraf
     network_mode: host
