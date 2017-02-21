@@ -21,6 +21,8 @@ Récupération du token pour l'admin
 
 Administration de jenkins sur http://nom_machine:49001/
 
+Ecriture des scripts dans des nouveaux jobs.
+
 ### Relation  
 
 Mise de l'image de jenkins sur le registry (! lourde)
