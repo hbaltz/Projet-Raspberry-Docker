@@ -1,11 +1,28 @@
 version: '3'
 
+
+
 services:
-  frontlb:
+  app:
     image: piensg017.ensg.eu:5000/traefik:traefik
-    command: --web --docker --docker.domain=piensg017.ensg.eu
-    volumes:
-     - /var/run/docker.sock:/var/run/docker.sock
+    command: --web --docker --docker.swarmmode --docker.domain=docker.localhost --docker.watch
     ports:
-     - "80:80"
-     - "8080:8080"
+      - 80:80
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - traefik_default
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      placement:
+        constraints: [node.role == manager]
+
+networks:
+  traefik_default:

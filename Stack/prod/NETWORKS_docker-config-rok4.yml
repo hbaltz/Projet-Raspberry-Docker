@@ -1,0 +1,51 @@
+version: '3'
+#
+# services:
+#   rok4:
+#     image: piensg017.ensg.eu:5000/rok4:arm-http
+#     volumes:
+#       - /mnt/Data/geodata/scan1000:/rok4/config/pyramids/scan1000
+#       - /mnt/Data/geodata/bdortho:/rok4/config/pyramids/bdortho
+#
+#     labels:
+#       traefik.port: "80"
+#       traefik.frontend.rule: "Host:172.31.56.158,piensg017.ensg.eu;Path:/rok4"
+#       traefik.backend: "rok4"
+
+# services:
+#   rok4:
+#     image: piensg017.ensg.eu:5000/rok4:arm-http
+#     volumes:
+#       - /mnt/Data/geodata/scan1000:/rok4/config/pyramids/scan1000
+#       - /mnt/Data/geodata/bdortho:/rok4/config/pyramids/bdortho
+# #Partie à ajouter pour que le service se "déclare" auprès de traefik
+#     deploy:
+#       labels:
+#         traefik.port: "80"
+#         traefik.frontend.rule: "Host:172.31.56.158,piensg017.ensg.eu;Path:/rok4"
+#         traefik.backend: "rok4"
+#     networks:
+#       - traefik_default
+# networks:
+#   traefik_default:
+#     external: true
+services:
+  rok4:
+    image: piensg017.ensg.eu:5000/rok4:arm-http
+    volumes:
+      - /mnt/Data/geodata/scan1000:/rok4/config/pyramids/scan1000
+      - /mnt/Data/geodata/bdortho:/rok4/config/pyramids/bdortho
+#Partie à ajouter pour que le service se "déclare" auprès de traefik
+    networks:
+      - traefik_traefik_default
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+      labels:
+        - "traefik.port=80"
+        - "traefik.frontend.rule=Host:172.31.56.158,piensg017.ensg.eu;Path:/rok4"
+        - "traefik.backend=rok4"
+
+networks:
+  traefik_traefik_default:
+    external: true

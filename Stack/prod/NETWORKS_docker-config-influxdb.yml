@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  grafana:
+    image: piensg017.ensg.eu:5000/grafana:2.6.0
+    ports:
+      - "3000"
+    volumes:
+      - /mnt/Data/grafana/data:/grafana/data
+      - /mnt/Data/grafana/config:/grafana/config
+    links:
+      - influxdb
+    networks:
+      - INTERCO_TEST
+      - DATA_TEST
+
+
+  influxdb:
+    image: piensg017.ensg.eu:5000/influxdb:1.1.1
+    volumes:
+      - /mnt/Data/influxdb/data:/data
+    ports:
+      - "8086"
+    environment:
+      ADMIN_USER: admin
+      INFLUXDB_INIT_PWD: superpassword
+      PRE_CREATE_DB: telegraf
+    networks:
+      - DATA_TEST
+
+
+
+
+networks:
+  DATA_TEST:
+    external: true
+  INTERCO_TEST:
+    external: true

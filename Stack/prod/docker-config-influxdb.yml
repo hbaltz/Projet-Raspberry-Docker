@@ -11,6 +11,8 @@ services:
       ADMIN_USER: admin
       INFLUXDB_INIT_PWD: superpassword
       PRE_CREATE_DB: telegraf
+
+
   grafana:
     image: piensg017.ensg.eu:5000/grafana:2.6.0
     ports:

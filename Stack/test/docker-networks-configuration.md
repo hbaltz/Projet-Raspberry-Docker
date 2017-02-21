@@ -1,5 +1,6 @@
 docker network create -d overlay --internal DATA
 docker network create -d overlay INTERCO
+docker network create -d bridge FRONT
 
 _________________________________________________
 ajouter pour les services backend :
@@ -36,9 +37,12 @@ ajouter pour les services frontend :
 services:
 	networks:
 		- INTERCO
+		- FRONT
 
 networks:
 	INTERCO:
+		external: true
+	FRONT:
 		external: true
 
 
