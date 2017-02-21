@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  postgis:
+    image: piensg017.ensg.eu:5000/rpi-postgresql-postgis:latest
+    ports:
+      - "5432:5432"
+    volumes:
+      - /mnt/Data/postgresql:/var/lib/postgresql/data 
+    environment:
+      - "POSTGRES_PASSWORD=docker"
