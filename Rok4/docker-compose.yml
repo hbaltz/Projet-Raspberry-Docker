@@ -4,6 +4,7 @@ services:
   rok4: 
     image: rok4/rok4:arm-http
     # Exposed ports cannot be accessed publicly over the internet. (published ports are !)
+    # Actual port should match front-end and docker swarm config
     ports: 
       - 8080:80
     volumes:
