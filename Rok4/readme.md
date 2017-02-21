@@ -59,7 +59,6 @@ le chemin est écrit dans le fichier [startRok4](https://github.com/tcoupin/dock
 
 Les fichiers à éditer sont maintenant dans le volume géré par Glusterfs : `/mnt/Data/geodata`
 
-
 * bdortho
 
 ``` sh
@@ -95,6 +94,7 @@ Configuration (docker-compose) :
       - /mnt/Data/geodata/bdortho:/rok4/config/pyramids/bdortho
 ```
 
+
 Vérification :
 
 * Services disponibles 
@@ -124,3 +124,4 @@ Les *quotes* ne sont pas prises en compte, ce qui oblige à mettre des '\_' dans
 Vérification sur le serveur web : `http://172.31.57.69:8083/rok4?service=WMS&request=GetCapabilities`
 
 A faire : tester l'effet du nombre de threads...
+
