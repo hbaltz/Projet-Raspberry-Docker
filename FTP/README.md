@@ -1,21 +1,21 @@
-#### FTP
-Construction de l'image
+# FTP
+## Construction de l'image
 ```
 docker build --label rpi-proftpd --tag tcoupin /home/pirate
 ```
-Mise en route du serveur  
+## Mise en route du serveur  
 ... sur le port **21**  
 ... montage des dossiers **/home/pirate** sur **/users** et **/mnt/Data** sur **/data**
 ```
 docker run --name proftpd -d -p 21:21 -v /home/pirate:/users -v /mnt/Data:/data tcoupin
 ```
-### Fichiers nécessaires
+## Fichiers nécessaires
 * Dockerfile
 * proftpd.conf
 * start.sh
 * users
 
-Dockerfile  
+### Dockerfile  
 *ne pas oublier le proxy !*
 ```
 FROM resin/rpi-raspbian:jessie
@@ -34,7 +34,7 @@ EXPOSE 20 21 50000-50050
 
 CMD /bin/bash /start.sh
 ```
-proftpd.conf
+### proftpd.conf
 ```
 #
 # /etc/proftpd/proftpd.conf -- This is a basic ProFTPD configuration file.
@@ -229,7 +229,7 @@ AdminControlsEngine off
 # Include other custom configuration files
 Include /etc/proftpd/conf.d/
 ```
-start.sh
+### start.sh
 ```
 #!/bin/bash
 
@@ -248,7 +248,7 @@ mv ftpd.passwd /etc/proftpd
 chmod -R 600 /etc/proftpd
 /usr/sbin/proftpd -n -c /etc/proftpd/proftpd.conf
 ```
-users  
+### users  
 *nom_utilisateur mot_de_passe répertoire_d'accès*
 ```
 admin admin /mnt/data/livraison
