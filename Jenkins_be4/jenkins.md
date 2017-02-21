@@ -4,7 +4,7 @@
 
 Récupération de l'image
 
-    docker pull djdefi/rpi-jenkins
+    docker pull piensg017.ensg.eu:5000/djdefi/rpi-jenkins
 
 Création du dossier de data  
 
@@ -13,7 +13,7 @@ Création du dossier de data
 
 Lancement de jenkins avec montage du volumes   
 
-    docker run -d -p 49001:8080 -v /mnt/Data/jenkins:/var/jenkins_home:z --name jenkins -t djdefi/rpi-jenkins
+    docker run -d -p 49001:8080 -v /mnt/Data/jenkins:/var/jenkins_home:z --name jenkins -t piensg017.ensg.eu:5000/djdefi/rpi-jenkins
 
 Récupération du token pour l'admin  
 
@@ -21,6 +21,14 @@ Récupération du token pour l'admin
 
 Administration de jenkins sur http://nom_machine:49001/
 
+Ecriture des scripts dans des nouveaux jobs.
+
 ### Relation  
 
 Mise de l'image de jenkins sur le registry (! lourde)
+
+
+### Lien utile:
+
+Provenance de l'image:
+  https://hub.docker.com/r/dilgerm/rpi-jenkins/
