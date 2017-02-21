@@ -94,11 +94,11 @@ Nous pouvons les chercher dans hub.docker.com ou les créer les rpi-images dont 
 Il faut mettre en place Telegraf sur chaque RPI mais centraliser InfluxDB et Grafana.
 Il faut diviser le docker-compose en deux.
 
-Lorsque les volumes seront gérés, il faudra enlever les volumes dans les docker-compose.
+Lorsque les volumes seront gérés, il faudra changer les volumes dans les docker-compose pour partager les données.
 
 Utiliser un fichier conf pour telegraf pour tous les RPI et le déployer manuellement.
 
-Une fois que tout fonctionne, il faut ajouter les images à registry.
+Une fois que tout fonctionne, il faut ajouter les images à registry. Puis déployer les images de registry.
 
 
 ### Utilisation de Grafana ###

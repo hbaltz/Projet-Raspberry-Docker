@@ -1,0 +1,8 @@
+version: "2.0"
+services:
+  geoserver:
+    build: geoserver
+    volumes:
+      - /mnt/Data/geoserver/data:/data
+
+

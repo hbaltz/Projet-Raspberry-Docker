@@ -100,6 +100,17 @@ Utiliser un fichier conf pour telegraf pour tous les RPI et le déployer manuell
 
 Une fois que tout fonctionne, il faut ajouter les images à registry. Puis déployer les images de registry.
 
+Exemple pour influxdb : 
+```sh
+docker tag hypriot/rpi-influxdb:1.1.1 piensg017.ensg.eu:5000/influxdb:1.1.1
+docker push piensg017.ensg.eu:5000/telegraf:1.2.1
+
+
+docker run -it --rm piensg017.ensg.eu:5000/telegraf:1.2.1 telegraf config > telegraf.conf
+
+cd /mnt/Data/telegraf/
+nano telegraf.conf 
+```
 
 ### Utilisation de Grafana ###
 
