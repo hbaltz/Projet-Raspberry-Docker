@@ -1,0 +1,33 @@
+elasticsearch:
+
+  image: ind3x/rpi-elasticsearch
+
+  volumes:
+    - elk-data:/usr/share/rpi-elasticsearch/data
+
+
+logstash:
+
+  image: ind3x/rpi-logstash
+
+  links:
+    - elasticsearch
+
+  ports:
+    - "5601:5601"
+
+  volumes:
+    - ./:/rpi-logstash/etc
+
+  command: "-f /rpi-logstash/etc/completion.conf"
+
+
+kibana:
+
+  image: ind3x/rpi-kibana
+
+  links:
+    - elasticsearch
+
+  ports:
+    - "9201:9201"
