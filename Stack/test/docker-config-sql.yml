@@ -1,5 +1,3 @@
-## Error, replicas created but errors
-
 version: '3'
 
 services:

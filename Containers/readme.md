@@ -55,6 +55,9 @@ $ sudo cp -r ~/workcp/Docker_Perso/data/* .
 
 le chemin est écrit dans le fichier [startRok4](https://github.com/tcoupin/docker-rok4/blob/master/startRok4.sh) de l'image **rok4/rok4:arm-http**
 
+`find /rok4/config/pyramids/ -name *.lay -exec cp '{}' /rok4/config/layers/ \;`
+
+Les fichiers à éditer sont maintenant dans le volume géré par Glusterfs : `/mnt/Data/geodata`
 
 * bdortho
 
@@ -65,7 +68,7 @@ $ sudo nano ORTHO_JPG_PM_D075.lay
 
 
 ``` xml
-<pyramid>/rok4/config/pyramids/bdortho/ORTHO_JPG_PM_D075.pyr</pyramid>
+<pyramid>../pyramids/bdortho/ORTHO_JPG_PM_D075.pyr</pyramid>
 ``` 
 
 * scan1000
@@ -77,10 +80,12 @@ $ sudo nano SCAN1000_PYR-JPG_FXX_PM.lay
 
 
 ``` xml
-<pyramid>rok4/config/pyramids/scan1000/SCAN1000_PYR-JPG_FXX_PM.pyr</pyramid>
+<pyramid>../pyramids/scan1000/SCAN1000_PYR-JPG_FXX_PM.pyr</pyramid>
 ```
 
 ### docker-compose.yml pour rok4
+
+Pour l'instant, l'accès à rok4 n'est pas sécurisé.
 
 Configuration (docker-compose) :
 ``` sh
@@ -89,23 +94,34 @@ Configuration (docker-compose) :
       - /mnt/Data/geodata/bdortho:/rok4/config/pyramids/bdortho
 ```
 
-Erreur :
+
+Vérification :
+
+* Services disponibles 
+`http://172.31.57.69:8092/rok4?service=WMS&request=GetCapabilities`
+
+* Requête web
+`http://172.31.57.69:8092/rok4?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&LAYERS=ORTHO_JPG_PM_D075&STYLES=normal&CRS=EPSG:3857&WIDTH=3000&HEIGHT=3000&BBOX=242152,6229923,291072,6264167&FORMAT=image/png`
+
+* Sous QGIS 
+  * Ajouter couche WMS : `http://172.31.57.69:8092/rok4`
+
+C'est la version déployée sur le **registry** et distribuée par **docker swarm**.
+
+### docker-compose.yml - utilisation des variables d'environnement
+
+Variables d'environnement dans le fichier compose :
 ``` sh
-rok4_1  | pid=54 ERROR : Ne peut pas charger le fichier /rok4/config/layers/rok4/config/pyramids/scan1000/SCAN1000_PYR-JPG_FXX_PM.pyr
-rok4_1  | pid=54 ERROR : La pyramide /rok4/config/layers/rok4/config/pyramids/scan1000/SCAN1000_PYR-JPG_FXX_PM.pyr ne peut etre chargee
-rok4_1  | pid=54 ERROR : Ne peut charger le layer: /rok4/config/layers/SCAN1000_PYR-JPG_FXX_PM.lay
-rok4_1  | pid=54 ERROR : Ne peut pas charger le fichier /rok4/config/layers/bdortho/ORTHO_JPG_PM_D075.pyr
-rok4_1  | pid=54 ERROR : La pyramide /rok4/config/layers/bdortho/ORTHO_JPG_PM_D075.pyr ne peut etre chargee
-rok4_1  | pid=54 ERROR : Ne peut charger le layer: /rok4/config/layers/ORTHO_JPG_PM_D075.lay
-rok4_1  | pid=54 ERROR : Aucun layer n'a pu etre charge!
-rok4_1  | pid=54 ERROR : Liste de layers vide
-rok4_1  | pid=54 ERROR : Liste de layers vide
+    environment:
+      - ROK4_SERVER_NBTHREAD="20"
+      - ROK4_SERVICE_ABSTRACT="rok4_with_20_threads"
 ```
+Vérification dans :
+`docker exec -it rok4compose_rok4_1 /bin/bash` puis `more /tmp/custom_env`
 
+Les *quotes* ne sont pas prises en compte, ce qui oblige à mettre des '\_' dans les champs texte.
 
+Vérification sur le serveur web : `http://172.31.57.69:8083/rok4?service=WMS&request=GetCapabilities`
 
+A faire : tester l'effet du nombre de threads...
 
-pid=54 ERROR : Ne peut pas charger le fichier /rok4/config/layers/rok4/config/pyramids/scan1000/SCAN1000_PYR-JPG_FXX_PM.pyr
-rok4_1  | pid=54 ERROR : La pyramide /rok4/config/layers/rok4/config/pyramids/scan1000/SCAN1000_PYR-JPG_FXX_PM.pyr ne peut etre chargee
-rok4_1  | pid=54 ERROR : Ne peut charger le layer: /rok4/config/layers/SCAN1000_PYR-JPG_FXX_PM.lay
-^CGracefully stopping... (press Ctrl+C again to force)
