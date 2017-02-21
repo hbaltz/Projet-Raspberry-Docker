@@ -1,7 +1,5 @@
 version: '3'
 
-
-
 services:
   app:
     image: piensg017.ensg.eu:5000/traefik:traefik

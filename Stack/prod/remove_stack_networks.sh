@@ -1,20 +1,15 @@
 #!/bin/bash
 
-# Deployer rok4
+# Remove rok4
 docker stack rm rok4
 
-
-# Deployer le suvi d'état des raspberry pi
+# Remove metrics
 docker stack rm metrics
 
-
-# Deployer traefik
+# Remove traefik
 docker stack rm traefik
 
-
+# Remove networks
 docker network rm INTERCO_TEST
 docker network rm DATA_TEST
 docker network rm traefik_default
-
-# Deployer ftp
-# docker stack rm ftp
