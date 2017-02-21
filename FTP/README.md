@@ -1,8 +1,46 @@
+# FTP
+## Construction de l'image
+```
+docker build --label rpi-proftpd --tag tcoupin /home/pirate
+```
+## Mise en route du serveur  
+... sur le port **21**  
+... montage des dossiers **/home/pirate** sur **/users** et **/mnt/Data** sur **/data**
+```
+docker run --name proftpd -d -p 21:21 -v /home/pirate:/users -v /mnt/Data:/data tcoupin
+```
+## Fichiers nécessaires
+* Dockerfile
+* proftpd.conf
+* start.sh
+* users
+
+### Dockerfile  
+*ne pas oublier le proxy !*
+```
+FROM resin/rpi-raspbian:jessie
+
+MAINTAINER Thibault Coupin <thibault.coupin@gmail.com>
+
+ENV http_proxy http://10.0.4.2:3128
+
+RUN apt-get update && apt-get install -y proftpd-basic
+RUN mkdir /proftpd
+
+ADD proftpd.conf users /proftpd/
+ADD start.sh /
+
+EXPOSE 20 21 50000-50050
+
+CMD /bin/bash /start.sh
+```
+### proftpd.conf
+```
 #
 # /etc/proftpd/proftpd.conf -- This is a basic ProFTPD configuration file.
 # To really apply changes, reload proftpd after modifications, if
 # it runs in daemon mode. It is not required in inetd/xinetd mode.
-# 
+#
 
 # Includes DSO modules
 Include /etc/proftpd/modules.conf
@@ -30,7 +68,7 @@ ListOptions                	"-l"
 
 DenyFilter			\*.*/
 
-# Use this to jail all users in their homes 
+# Use this to jail all users in their homes
 DefaultRoot			~
 
 # Users require a valid shell listed in /etc/shells to login.
@@ -112,7 +150,7 @@ Ratios off
 
 # Delay engine reduces impact of the so-called Timing Attack described in
 # http://www.securityfocus.com/bid/11430/discuss
-# It is on by default. 
+# It is on by default.
 <IfModule mod_delay.c>
 DelayEngine on
 </IfModule>
@@ -155,24 +193,24 @@ AdminControlsEngine off
 #   # Cosmetic changes, all files belongs to ftp user
 #   DirFakeUser	on ftp
 #   DirFakeGroup on ftp
-# 
+#
 #   RequireValidShell		off
-# 
+#
 #   # Limit the maximum number of anonymous logins
 #   MaxClients			10
-# 
+#
 #   # We want 'welcome.msg' displayed at login, and '.message' displayed
 #   # in each newly chdired directory.
 #   DisplayLogin			welcome.msg
 #   DisplayChdir		.message
-# 
+#
 #   # Limit WRITE everywhere in the anonymous chroot
 #   <Directory *>
 #     <Limit WRITE>
 #       DenyAll
 #     </Limit>
 #   </Directory>
-# 
+#
 #   # Uncomment this if you're brave.
 #   # <Directory incoming>
 #   #   # Umask 022 is a good standard umask to prevent new files and dirs
@@ -185,9 +223,33 @@ AdminControlsEngine off
 #   #            AllowAll
 #   #            </Limit>
 #   # </Directory>
-# 
+#
 # </Anonymous>
 
 # Include other custom configuration files
 Include /etc/proftpd/conf.d/
+```
+### start.sh
+```
+#!/bin/bash
 
+cp -r /proftpd/* /etc/proftpd/
+
+echo "" > ftpd.passwd
+echo "" >> /proftpd/users
+cat /proftpd/users | while read line;
+do
+	read -r -a array <<< "$line"
+	echo "$line"
+	echo "${array[1]}" | ftpasswd --passwd --name ${array[0]} --home ${array[2]} --shell /bin/false --uid 1000 --stdin
+	mkdir -p ${array[2]}
+done
+mv ftpd.passwd /etc/proftpd
+chmod -R 600 /etc/proftpd
+/usr/sbin/proftpd -n -c /etc/proftpd/proftpd.conf
+```
+### users  
+*nom_utilisateur mot_de_passe répertoire_d'accès*
+```
+admin admin /mnt/data/livraison
+```

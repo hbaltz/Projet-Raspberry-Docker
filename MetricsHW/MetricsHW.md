@@ -98,10 +98,12 @@ Lorsque les volumes seront gérés, il faudra enlever les volumes dans les docke
 
 Utiliser un fichier conf pour telegraf pour tous les RPI et le déployer manuellement.
 
+Une fois que tout fonctionne, il faut ajouter les images à registry.
+
 
 ### Utilisation de Grafana ###
 
-En allant sur piensg003:3000, connecter avec admin puis ajouter data source comme : 
+En allant sur piensg003 (ou piensg017.ensg.eu si dans le registry), connecter avec admin puis ajouter data source comme : 
 ![Grafana data source](./Images/Grafana_data.png)
 
 

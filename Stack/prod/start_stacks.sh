@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Deployer traefik 
+docker stack deploy -c docker-config-traefik traefik
+
 # Deployer le suvi d'état des raspberry pi
 docker stack deploy -c docker-config-influxdb.yml metrics
 

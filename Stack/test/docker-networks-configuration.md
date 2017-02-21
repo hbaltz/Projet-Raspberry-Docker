@@ -1,8 +1,36 @@
-docker network create -d overlay --internal INTERCO
-docker network create -d overlay FRONT
+docker network create -d overlay --internal DATA
+docker network create -d overlay INTERCO
 
 _________________________________________________
-ajouter pour les services backend & middleware : 
+ajouter pour les services backend :
+=================================================
+
+services:
+	networks:
+		- DATA
+
+networks:
+	DATA:
+		external: true
+
+_________________________________________________
+ajouter pour les services middleware :
+=================================================
+
+services:
+	networks:
+		- INTERCO
+		- DATA
+
+networks:
+	INTERCO:
+		external: true
+	DATA:
+		external: true
+
+
+_________________________________________________
+ajouter pour les services frontend :
 =================================================
 
 services:
@@ -11,23 +39,6 @@ services:
 
 networks:
 	INTERCO:
-		external: true
-
-
-_________________________________________________
-ajouter pour les services frontend : 
-=================================================
-
-services:
-	networks:
-		- INTERCO
-		- FRONT
-
-
-networks:
-	INTERCO:
-		external: true
-	FRONT:
 		external: true
 
 
@@ -37,7 +48,7 @@ networks:
 -------------------------------------------------
 .................................................
 
-Sources : 
+Sources :
 
 https://technologyconversations.com/2017/01/23/using-docker-stack-and-compose-yaml-files-to-deploy-swarm-services/
 
