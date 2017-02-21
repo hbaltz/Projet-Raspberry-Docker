@@ -4,7 +4,7 @@
 
 Création du dossier postgresql et lancement image postgis
 
-    docker pull tobi312/rpi-postgresql-postgis
+    docker pull piensg017.ensg.eu:5000/rpi-postgresql-postgis
 
     docker run --name postgis -d -p 5432:5432 -v /mnt/Data/postgresql:/var/lib/postgresql/data -e POSTGRES_PASSWORD=docker tobi312/rpi-postgresql-postgis:latest
 
