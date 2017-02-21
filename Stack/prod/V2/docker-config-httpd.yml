@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  httpd:
+    image: piensg017.ensg.eu:5000/httpd:latest
+    networks:
+      - INTERCO
+    deploy:
+      labels:
+        - "traefik.port=80"
+        - "traefik.frontend.rule=Host:172.31.56.158,piensg017.ensg.eu"
+        - "traefik.backend=httpd"
+
+networks:
+  INTERCO:
+    external: true
