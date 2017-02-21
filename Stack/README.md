@@ -16,14 +16,26 @@ Plusieurs solutions existent :
 
 ## Ordre commande des déploiments
 
+#### Mise en place des networks :
+
+
+
+###### NOT WORKING FOR NOW
+
 Commencer par déployer la stack networks :
 
 ```
 docker stack deploy -c docker-config-networks.yml NETWORKS
 ```
 
-    Attention, le nom de la stack est à respecter obligatoirement car toutes les autres stacks en dépendent.
+    Attention, le nom de la stack est à respecter obligatoirement car toutes les autres stacks en dépendent. => Ne veut pas déployer le network sans service ...
 
+Tentative de creation de networks manuels :
+
+docker network create --driver=overlay --attachable core-infra
+http://blog.alexellis.io/docker-stacks-attachable-networks/
+
+###### REMOVE PRECEDENT SECTION WHEN WORKING
 
 Puis la stack registry :
 

@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  frontlb:
+    image: piensg017.ensg.eu:5000/traefik:traefik
+    command: --web --docker --docker.domain=piensg017.ensg.eu
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+     - "80:80"
+     - "8080:8080"
