@@ -10,15 +10,23 @@ Traefik est en charge de la réception des requêtes sur le front end et du redi
 
 ###Docker-compose.yml###
 
-**Exemple**
+Voici le fichier pour traefik.
+Le port 80 est ouvert, c'est celui que recevra les requêtes pour les différents services.
+Le port 8080 quant à lui permet d'accéder à l'interface d'adminitration de traefik.
+
 ```yml
 version: "2.0"
 services:
   frontlb:
     image: hypriot/rpi-traefik
-    command: --web --docker --docker.domain=piensg011.ensg.eu
+    command: --web --docker --docker.domain=piensg017.ensg.eu
+    environment:
+      TRAEFIK_LOG_LEVEL="INFO" # Log level
+      TRAEFIK_LOG_FILE="/opt/traefik/log/traefik.log"} # Log file. Redirected to docker stdout.
+      TRAEFIK_ACCESS_FILE="/opt/traefik/log/access.log"} # Access file. Redirected to docker stdout.
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
+     - /mnt/data/traefik/log/:/opt/traefik/log/
     ports:
      - "80:80"
      - "8080:8080"
@@ -29,8 +37,6 @@ Lancement
 cd ./path/
 docker-compose up -d
 ```
-
-Le port 8080 est celui de l'interface d'adminitration du service.
 
 ###Configuration de services utilisateurs###
 
@@ -48,7 +54,7 @@ services:
 #Partie à ajouter pour que le service se "déclare" auprès de traefik
     labels:
       traefik.port: "80" 
-      traefik.frontend.rule: "Host:172.31.57.70,piensg011.ensg.eu;Path:/rok4"
+      traefik.frontend.rule: "Host:piensg017.ensg.eu;Path:/rok4"
       traefik.backend: "rok4"
     networks:
       - traefik_default
@@ -68,4 +74,4 @@ traefik.backend : le nom donné au backend, il permettra à traefik de lier tout
 
 networks:
 
-- traefik_default : permet de créer l'instance dans le réseau de traefik et de ne pas en recréer une.
+- traefik_default : permet de créer l'instance dans le réseau de traefik et de ne pas en recréer un, ce qui poserait un problème d'isolation des réseaux.
