@@ -21,9 +21,9 @@ services:
     image: hypriot/rpi-traefik
     command: --web --docker --docker.domain=piensg017.ensg.eu
     environment:
-      TRAEFIK_LOG_LEVEL="INFO" # Log level
-      TRAEFIK_LOG_FILE="/opt/traefik/log/traefik.log"} # Log file. Redirected to docker stdout.
-      TRAEFIK_ACCESS_FILE="/opt/traefik/log/access.log"} # Access file. Redirected to docker stdout.
+     - TRAEFIK_LOG_LEVEL="INFO"
+     - TRAEFIK_LOG_FILE="/opt/traefik/log/traefik.log"
+     - TRAEFIK_ACCESS_FILE="/opt/traefik/log/access.log"
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
      - /mnt/data/traefik/log/:/opt/traefik/log/
