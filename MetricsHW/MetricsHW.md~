@@ -96,10 +96,14 @@ Il faut diviser le docker-compose en deux.
 
 Lorsque les volumes seront gérés, il faudra enlever les volumes dans les docker-compose.
 
+Utiliser un fichier conf pour telegraf pour tous les RPI et le déployer manuellement.
+
+Une fois que tout fonctionne, il faut ajouter les images à registry.
+
 
 ### Utilisation de Grafana ###
 
-En allant sur piensg003:3000, connecter avec admin puis ajouter data source comme : 
+En allant sur piensg003 (ou piensg017.ensg.eu si dans le registry), connecter avec admin puis ajouter data source comme : 
 ![Grafana data source](./Images/Grafana_data.png)
 
 
@@ -109,6 +113,11 @@ Pour visualiser aller sur New Dashboard, ajouter new puis :
 
 Création du dashboard : 
 ![dashboard](./Images/Grafana_dashboard.png)
+
+
+### Vulnérabilité ###
+
+Pas de déploiement d'Influxdb
 
 ### Trucs et astuces ###
 - Supprimer tous les conteneurs

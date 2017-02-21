@@ -57,7 +57,7 @@ Création du volume /mnt/data/registry
 Ajout de l'insecure sur le registry  
 
     sudo nano /etc/systemd/system/docker.service.d/01-main.conf  
-    --insecure-registry piensg004.ensg.eu:5000  
+    --insecure-registry piensg017.ensg.eu:5000  
 
 ! Attention ne pas oublier de tout redémarrer:  
 
@@ -67,8 +67,8 @@ Ajout de l'insecure sur le registry
 Du coup avec la config du swarm:  
 Intégation d'une image dans registry
 
-    docker tag idhello-world piensg004.ensg.eu:5000/hello-world
-    docker push piensg004.ensg.eu:5000/hello-world
+    docker tag idhello-world piensg017.ensg.eu:5000/hello-world
+    docker push piensg017.ensg.eu:5000/hello-world
 
 
 Liens utiles:
