@@ -1,9 +1,9 @@
 ##Traefik##
 
-**Service utilisé :** hypriot/rpi-traefik
-**Port ouvert :** 80/8080
-**Nom du contenaire :** hypriot/rpi-traefik
-**Dépôt officiel :** [https://hub.docker.com/r/hypriot/rpi-traefik/](https://hub.docker.com/r/hypriot/rpi-traefik/)
+- **Service utilisé :** hypriot/rpi-traefik
+- **Port ouvert :** 80/8080
+- **Nom du contenaire :** hypriot/rpi-traefik
+- **Dépôt officiel :** [https://hub.docker.com/r/hypriot/rpi-traefik/](https://hub.docker.com/r/hypriot/rpi-traefik/)
 
 ###Contexte###
 Traefik est en charge de la réception des requêtes sur le front end et du redispatch vers les différents services en backend suivant des règles.
