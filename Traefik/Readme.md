@@ -1,19 +1,12 @@
 ##Traefik##
 
 - **Service utilisé :** hypriot/rpi-traefik
-- **Ports ouverts :** 80/8080
+- **Port ouvert :** 80/8080
 - **Nom du contenaire :** hypriot/rpi-traefik
 - **Dépôt officiel :** [https://hub.docker.com/r/hypriot/rpi-traefik/](https://hub.docker.com/r/hypriot/rpi-traefik/)
 
 ###Contexte###
-Traefik est en charge de la réception des requêtes sur le front end et du redispatch vers les différents services en backend suivant des règles.
-
-###Configuration###
-
-Deux virtual hosts :
-
-- port 80 pour la visualisation,
-- port 8080 pour l'accès à jenkins
+Traefik est en charge de la réception des requêtes sur le front end et du redispatch vers les différents services en backend suivant des règles, il gère aussi le load balancing.
 
 ###Docker-compose.yml###
 
@@ -39,7 +32,7 @@ docker-compose up -d
 
 Le port 8080 est celui de l'interface d'adminitration du service.
 
-###Configuration des services utilisateurs###
+###Configuration de services utilisateurs###
 
 ###Docker-compose.yml###
 
