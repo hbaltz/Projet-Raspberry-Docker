@@ -1,6 +1,4 @@
 version: '3'
-# TODO : clean
-
 
 services:
   rok4:
@@ -10,15 +8,13 @@ services:
       - /mnt/Data/geodata/bdortho:/rok4/config/pyramids/bdortho
 #Partie à ajouter pour que le service se "déclare" auprès de traefik
     networks:
-      - traefik_traefik_default
+      - INTERCO
     deploy:
-      placement:
-        constraints: [node.role == manager]
       labels:
         - "traefik.port=80"
         - "traefik.frontend.rule=Host:172.31.56.158,piensg017.ensg.eu;Path:/rok4"
         - "traefik.backend=rok4"
 
 networks:
-  traefik_traefik_default:
+  INTERCO:
     external: true

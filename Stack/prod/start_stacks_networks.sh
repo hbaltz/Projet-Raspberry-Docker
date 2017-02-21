@@ -1,9 +1,8 @@
 #!/bin/bash
 
 # Networks configuration
-docker network create -d overlay --internal DATA_TEST
-docker network create -d overlay INTERCO_TEST
-docker network create --driver=overlay traefik_default
+docker network create -d overlay DATA
+docker network create -d overlay INTERCO
 
 
 # Deployer traefik

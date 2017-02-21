@@ -9,8 +9,6 @@ services:
       - 8080:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - traefik_default
     deploy:
       mode: replicated
       replicas: 1
@@ -21,6 +19,3 @@ services:
         window: 120s
       placement:
         constraints: [node.role == manager]
-
-networks:
-  traefik_default:
