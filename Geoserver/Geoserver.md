@@ -7,5 +7,4 @@ Création des répertoires de partage
 docker-compose.yml + Dockerfile
 
 
-
-
+Dockerfile à modifier pour faire perdurer tomcat7 dans le conteneur.
