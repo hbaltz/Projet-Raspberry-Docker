@@ -59,7 +59,6 @@ le chemin est écrit dans le fichier [startRok4](https://github.com/tcoupin/dock
 
 Les fichiers à éditer sont maintenant dans le volume géré par Glusterfs : `/mnt/Data/geodata`
 
-
 * bdortho
 
 ``` sh
@@ -95,6 +94,7 @@ Configuration (docker-compose) :
       - /mnt/Data/geodata/bdortho:/rok4/config/pyramids/bdortho
 ```
 
+
 Vérification :
 
 * Services disponibles 
@@ -110,4 +110,18 @@ C'est la version déployée sur le **registry** et distribuée par **docker swar
 
 ### docker-compose.yml - utilisation des variables d'environnement
 
+Variables d'environnement dans le fichier compose :
+``` sh
+    environment:
+      - ROK4_SERVER_NBTHREAD="20"
+      - ROK4_SERVICE_ABSTRACT="rok4_with_20_threads"
+```
+Vérification dans :
+`docker exec -it rok4compose_rok4_1 /bin/bash` puis `more /tmp/custom_env`
+
+Les *quotes* ne sont pas prises en compte, ce qui oblige à mettre des '\_' dans les champs texte.
+
+Vérification sur le serveur web : `http://172.31.57.69:8083/rok4?service=WMS&request=GetCapabilities`
+
+A faire : tester l'effet du nombre de threads...
 
