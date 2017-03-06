@@ -2,11 +2,7 @@
 
 Sujet issu du [TP de tcoupin](https://github.com/tcoupin/tp_asi_ensg)
 
-## Le projet
-
-Nous avons 3,5 jours pour jouer avec une vingtaine de RaspeberryPi :)
-
-### But du jeu : mettre en place une IDG (as a Service)
+## But du jeu : mettre en place une IDG (as a Service) sur un cluster de RaspberryPi
 
 Fonctionnalités/contraintes :
 - offre de service publique :
@@ -22,15 +18,16 @@ Fonctionnalités/contraintes :
   - haute disponibilité et distribution
   - mise à jour des composants sans interuption de service
 
-### Organisation
+## Organisation
 
 A vous de choisir comment vous organisez votre temps et vos ressources.
 
 Je fournis les cartes SD prêtes : HypriotOS, Git et ce qui vous ferait plaisir.
 
-### Rendu
+## Rendu (en cours)
 
-Un début d'infra qui tourne.
+Un début d'infra qui tourne. 
+> Réalisé
 
 Un dépôt Github :
 
