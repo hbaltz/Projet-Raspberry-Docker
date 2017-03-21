@@ -2,7 +2,7 @@ version: '3'
 
 services:
   postgis:
-    image: piensg017.ensg.eu:5000/rpi-postgresql-postgis:latest
+    image: piensg017.ensg.eu:5000/rpi-postgresql-postgis:latest # based on tobi312/rpi-postgresql-postgis 
     ports:
       - "5432:5432"
     volumes:
