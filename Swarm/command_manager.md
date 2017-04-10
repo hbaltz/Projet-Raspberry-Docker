@@ -26,11 +26,14 @@ docker node ls
 ```
 docker swarm join-token worker
 ```
+> For our study case, please use the commands written in [commands.md](commands.md).
 
 ## Create the command line to join the cluster as a manager
 ```
 docker swarm join-token manager
 ```
+> For our study case, please use the commands written in [commands.md](commands.md).
+
 
 ## Deploy a service
 ```
@@ -67,7 +70,7 @@ docker service inspect --pretty helloworld
 docker service ps helloworld
 ```
 
-## remove a service 
+## remove a service
 ```
 docker service rm helloworld
 ```
