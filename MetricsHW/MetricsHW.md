@@ -1,12 +1,6 @@
-# Métrique Hardware #
+# Métriques Hardware #
 
 Nous nous intéressons à des métriques concernant le CPU : le CPU du système et l'utilisation du CPU, la mémoire, le réseau...
-
-Idées :
-</br>https://www.datadoghq.com/blog/how-to-monitor-docker-resource-metrics/
-</br>http://docs.datadoghq.com/integrations/docker/
-</br>https://hub.docker.com/_/docker/
-
 
 ## Solution utilisée ##
 
