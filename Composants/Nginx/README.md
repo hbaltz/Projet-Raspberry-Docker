@@ -1,21 +1,21 @@
-##Serveur Web Privé##
+## Serveur Web Privé ##
 
 - **Service utilisé :** nginx
 - **Dépôt officiel :** [https://hub.docker.com/_/nginx/](https://hub.docker.com/_/nginx/)
 
-###Contexte###
+### Contexte ###
 Le serveur web privé sert à l'administration et à la visualisation des données issues du monitoring machines et services.
 Les fichiers de configuration seront sur le système de fichiers.
 Le contenu des sites sera sur le système de fichiers.
 
-###Configuration###
+### Configuration ###
 
 Deux virtual hosts :
 
 - port 80 pour la visualisation,
 - port 8080 pour l'accès à jenkins
 
-###Docker-compose.yml###
+### Docker-compose.yml ###
 
 **Exemple**
 ```yml
@@ -35,7 +35,7 @@ cd ./path/
 docker-compose up -d
 ```
 
-###Montage réseau###
+### Montage réseau ###
 
 ```sh
 sudo mkdir -p /mnt/data/httpdata/
