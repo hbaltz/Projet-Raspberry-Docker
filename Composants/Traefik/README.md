@@ -1,14 +1,14 @@
-##Traefik##
+## Traefik ##
 
 - **Service utilisé :** hypriot/rpi-traefik
 - **Port ouvert :** 80/8080
 - **Nom du contenaire :** hypriot/rpi-traefik
 - **Dépôt officiel :** [https://hub.docker.com/r/hypriot/rpi-traefik/](https://hub.docker.com/r/hypriot/rpi-traefik/)
 
-###Contexte###
+### Contexte ###
 Traefik est en charge de la réception des requêtes sur le front end et du redispatch vers les différents services en backend suivant des règles, il gère aussi le load balancing.
 
-###Docker-compose.yml###
+### Docker-compose.yml ###
 
 Voici le fichier pour traefik.
 Le port 80 est ouvert, c'est celui que recevra les requêtes pour les différents services.
@@ -38,9 +38,9 @@ cd ./path/
 docker-compose up -d
 ```
 
-###Configuration de services utilisateurs###
+### Configuration de services utilisateurs ###
 
-###Docker-compose.yml###
+### Docker-compose.yml ###
 
 **Exemple pour Rok4**
 ```yml
