@@ -1,7 +1,7 @@
 ## Traefik ##
 
 - **Service utilisé :** hypriot/rpi-traefik
-- **Port ouvert :** 80/8080
+- **Ports ouverts :** 80/8080
 - **Nom du contenaire :** hypriot/rpi-traefik
 - **Dépôt officiel :** [https://hub.docker.com/r/hypriot/rpi-traefik/](https://hub.docker.com/r/hypriot/rpi-traefik/)
 
