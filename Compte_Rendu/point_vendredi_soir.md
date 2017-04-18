@@ -24,7 +24,7 @@ On est passé de sftp à ftp simple.
 Plusieurs images ont été testées. L'image tcoupin/rpi-proftpd permet de personalisée la liste d'utilisateur et leur dossier. Elle inclut aussi une documentation sur les 2 modes FTP : actif/passif (voir https://fr.wikipedia.org/wiki/File_Transfer_Protocol#.C3.89tablissement_des_connexions)
 
 
-##GlusterFS - Ru M
+## GlusterFS - Ru M
 
 Gluster permet d'agréer des espaces disques de différents serveurs et de gérer la réplication des fichiers sur ces différents serveurs pour assurer la performance d'accès aux données et la sécurité en cas de perte de disque.
 

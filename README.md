@@ -30,11 +30,11 @@ Un début d'infra qui tourne.
 
 Un dépôt Github :
 
-- analyse
-- proposition d'architecture et organisation de la conception et du build
-- détails de chaque composant : solution, relations, risques
+- [analyse](./Analyse)
+- proposition d'[architecture](./Architecture) et organisation de la conception et du build
+- détails de chaque [composant](./Composants) : solution, relations, risques
 - procédures
-- PAQ (sauvegarde, résilience, surface d'attaque...)
+- [PAQ](./PAQ) (sauvegarde, résilience, surface d'attaque...)
 - script et config pour un redéploiement
 - ...
 
