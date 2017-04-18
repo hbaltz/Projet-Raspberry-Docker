@@ -11,4 +11,4 @@ La partie administration offre un panel d'outils *adjectif de loic*. Au niveau d
 Ce service doit être le plus résilient possible et s'ajuster à une montée en charge. L'infrastructure doit être redéployable facilement avec le moins de dépendances à l'architecture physique.
 La frontière entre les composants doit être correctement délimitée.
 
-[Retour](/)
+[Retour](https://github.com/hbaltz/Projet-Raspberry-Docker/)
