@@ -30,7 +30,7 @@ Un début d'infra qui tourne.
 
 Un dépôt Github :
 
-- analyse
+- [analyse](./Analyse)
 - proposition d'architecture et organisation de la conception et du build
 - détails de chaque composant : solution, relations, risques
 - procédures
