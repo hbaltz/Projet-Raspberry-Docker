@@ -159,8 +159,6 @@ Il existe des solutions pour mettre en place un CD pour un docker particulier, v
 
 Le fait de passer par **Swarm** (qui contrôle le nombre de container **rok4** actifs sur les machines *worker*) et **Traefik** qui redistribue les requêtes sur un container **rok4** d'un des RPI (via une requête sur un master `http://piensg017.ensg.eu/rok4`).
 
-Le contrôle des container **rok4** doit rester 
-
 ## Notes diverses
 
 #### Aide mémoire Docker
