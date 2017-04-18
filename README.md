@@ -27,7 +27,6 @@ Je fournis les cartes SD prêtes : HypriotOS, Git et ce qui vous ferait plaisir.
 ## Rendu (en cours)
 
 Un début d'infra qui tourne. 
-> Réalisé
 
 Un dépôt Github :
 
