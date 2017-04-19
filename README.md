@@ -2,7 +2,8 @@
 
 Sujet issu du [TP de tcoupin](https://github.com/tcoupin/tp_asi_ensg)
 
-## But du jeu : mettre en place une IDG (as a Service) sur un cluster de RaspberryPi
+## But du jeu : 
+**mettre en place une Infrastructure de Données Géographiques (as a Service) sur un cluster de RaspberryPi**
 
 Fonctionnalités/contraintes :
 - offre de service publique :
@@ -24,7 +25,7 @@ A vous de choisir comment vous organisez votre temps et vos ressources.
 
 Je fournis les cartes SD prêtes : HypriotOS, Git et ce qui vous ferait plaisir.
 
-## Rendu (en cours)
+## Rendu
 
 Un début d'infra qui tourne. 
 
