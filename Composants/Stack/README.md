@@ -1,39 +1,52 @@
-# Création stack
-Utilisation d'une stack par ensemble de services fonctionnant ensemble
+# Stack
+Une stack doit être vu comme un manager de services qui permet de déployer une application dans un environnement spécifique. Elle permet donc d'orchestrer l'ensemble des services afin qu'ils communiquent ensemble.
 
-# Récupérer les fichiers de déploiements
+> Note: Initialiser le [swarm](https://github.com/hbaltz/Projet-Raspberry-Docker/tree/master/Composants/Swarm) *(un manager / un worker)* avant de déployer la stack peut éviter certains problèmes.
 
+## Configuration pour un redéploiement
+### Récupération des images à déployer
 Plusieurs solutions existent :
-- cloner le dépôt git sur les raspberry et aller dans le dossier stack/prod
+- cloner le dépôt git depuis un raspberry *(manager)* et aller dans le dossier Composants/Stack/prod/V2
 ```
     git clone https://github.com/hbaltz/Projet-Raspberry-Docker
-    cd Projet-Raspberry-Docker/Stack/prod
+    cd Projet-Raspberry-Docker/Composants/Stack/prod/V1
 ```
-- avoir les fichiers sur sa machine locale et les envoyer sur un master :
+> Certaines images (traefik, httpd, rok4) se trouvent désormais dans le répertoire V2
+> > La version V2 ajoute les configurations à ces images pour considérer traefik. Les migrations vers la V2 sont peu à peu résolues.
+> Certaines images (networks) sont dans le répertoire Stack/test
+- avoir les fichiers sur sa machine locale et les envoyer sur un raspberry *master* :
 ```
+    scp docker-config-networks.yml piensg017:
+    scp docker-config-traefix.yml piensg017:
     scp docker-config-registry.yml piensg017:
+    scp docker-config-httpd.yml piensg017:
+    scp docker-config-rok4.yml piensg017:
 ```
 
-## Ordre commande des déploiments
+### Mise en place des réseaux :
 
-#### Mise en place des networks :
-
-
+Il est nécessaire de commencer par déployer les réseaux virtuels entre les composants.
 
 ###### NOT WORKING FOR NOW
+En principe, une stack peut servir à configurer les networks. Malheureusement, nos tentatives sont restées infructueuses car la stack ne veut pas déployer de network sans déployer un service. Nous avons contourner ce problème par une [solution manuelle](#solution-manuelle).
 
-Commencer par déployer la stack networks :
-
+Pour cela, il suffit de déployer la stack networks comme suit :
 ```
 docker stack deploy -c docker-config-networks.yml NETWORKS
 ```
+> Attention, le nom de la stack est à respecter **obligatoirement** car toutes les autres stacks en dépendent.
 
-    Attention, le nom de la stack est à respecter obligatoirement car toutes les autres stacks en dépendent. => Ne veut pas déployer le network sans service ...
-
-Tentative de creation de networks manuels :
-
+###### REMOVE FOLLOWING SECTION WHEN WORKING
+(#solution-manuelle)
+D'après l'[article du blog Alex Ellis](http://blog.alexellis.io/docker-stacks-attachable-networks/), la ligne de commande suivante permet de créer un réseau attaché :
+```
 docker network create --driver=overlay --attachable core-infra
-http://blog.alexellis.io/docker-stacks-attachable-networks/
+```
+
+Pour faciliter nos tests (et par fainéantise), nous avons créer deux scripts qui permettent de :
+- [déployer les réseaux](https://raw.githubusercontent.com/hbaltz/Projet-Raspberry-Docker/master/Composants/Stack/prod/start_stacks_networks.sh)
+- [écraser les réseaux](https://raw.githubusercontent.com/hbaltz/Projet-Raspberry-Docker/master/Composants/Stack/prod/remove_stack_networks.sh)
+
 
 ###### REMOVE PRECEDENT SECTION WHEN WORKING
 
