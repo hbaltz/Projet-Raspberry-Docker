@@ -28,7 +28,7 @@ Plusieurs solutions existent :
 Il est nécessaire de commencer par déployer les réseaux virtuels entre les composants.
 
 ###### NOT WORKING FOR NOW
-En principe, une stack peut servir à configurer les networks. Malheureusement, nos tentatives sont restées infructueuses car la stack ne veut pas déployer de network sans déployer un service. Nous avons contourner ce problème par une [solution manuelle](#solution-manuelle).
+En principe, une stack peut servir à configurer les networks. Malheureusement, nos tentatives sont restées infructueuses car la stack ne veut pas déployer de network sans déployer un service. Nous avons contourner ce problème par une [solution manuelle](######REMOVE-FOLLOWING-SECTION-WHEN-WORKING).
 
 Pour cela, il suffit de déployer la stack networks comme suit :
 ```
@@ -37,7 +37,6 @@ docker stack deploy -c docker-config-networks.yml NETWORKS
 > Attention, le nom de la stack est à respecter **obligatoirement** car toutes les autres stacks en dépendent.
 
 ###### REMOVE FOLLOWING SECTION WHEN WORKING
-(#solution-manuelle)
 D'après l'[article du blog Alex Ellis](http://blog.alexellis.io/docker-stacks-attachable-networks/), la ligne de commande suivante permet de créer un réseau attaché :
 ```
 docker network create --driver=overlay --attachable core-infra
