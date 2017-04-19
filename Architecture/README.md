@@ -1,10 +1,10 @@
 # Architecture
 
-## Identifier les différents éléments :
+## Identifier les différents éléments
 
     1 composant => 1 docker
 
-## Services :
+## Services
   - wms raster *(RPI 3)*
   - wms vecteur *(RPI 3)*
 
@@ -17,7 +17,7 @@
 
   - forge avec registry
 
-  - suiveur d'état des raspberry (grafana ?)
+  - suiveur d'état des raspberry
 
 ## Diagrammes
 
