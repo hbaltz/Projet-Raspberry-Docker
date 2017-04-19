@@ -1,11 +1,12 @@
+# Notes sur les liens entre les réseaux
+
+```
 docker network create -d overlay --internal DATA
 docker network create -d overlay INTERCO
 docker network create -d bridge FRONT
-
-_________________________________________________
-ajouter pour les services backend :
-=================================================
-
+```
+### ajouter pour les services backend :
+```
 services:
 	networks:
 		- DATA
@@ -13,11 +14,10 @@ services:
 networks:
 	DATA:
 		external: true
+```
 
-_________________________________________________
-ajouter pour les services middleware :
-=================================================
-
+### ajouter pour les services middleware :
+```
 services:
 	networks:
 		- INTERCO
@@ -28,12 +28,10 @@ networks:
 		external: true
 	DATA:
 		external: true
+```
 
-
-_________________________________________________
-ajouter pour les services frontend :
-=================================================
-
+### ajouter pour les services frontend :
+```
 services:
 	networks:
 		- INTERCO
@@ -44,20 +42,11 @@ networks:
 		external: true
 	FRONT:
 		external: true
+```
 
 
-
-#################################################
-=================================================
--------------------------------------------------
-.................................................
-
-Sources :
-
-https://technologyconversations.com/2017/01/23/using-docker-stack-and-compose-yaml-files-to-deploy-swarm-services/
-
-https://docs.docker.com/engine/reference/commandline/stack_deploy/
-
-https://docs.docker.com/apidocs/docker-cloud/?http#service
-
-https://stackfiles.io
+## Bibliographie :
+- https://technologyconversations.com/2017/01/23/using-docker-stack-and-compose-yaml-files-to-deploy-swarm-services/
+- https://docs.docker.com/engine/reference/commandline/stack_deploy/
+- https://docs.docker.com/apidocs/docker-cloud/?http#service
+- https://stackfiles.io
