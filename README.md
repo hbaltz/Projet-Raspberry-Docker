@@ -35,7 +35,7 @@ Un dépôt Github :
 - détails de chaque [composant](./Composants) : solution, relations, risques
 - procédures
 - [PAQ](./PAQ) (sauvegarde, résilience, surface d'attaque...)
-- script et config pour un redéploiement
+- script et config pour un [redéploiement](./Composants/Stack)
 - ...
 
 La contribution de chacun sera évaluée.
