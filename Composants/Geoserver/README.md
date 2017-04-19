@@ -34,6 +34,14 @@ Adapatation de [https://github.com/daveb1034/R_Pi_Geo](https://github.com/daveb1
 > Création des répertoires de partage
 
 Le **docker-compose.yml** fait appel au **Dockerfile**.
+```yml
+version: "2.0"
+services:
+  geoserver:
+    build: geoserver
+    volumes:
+      - /mnt/Data/geoserver/data:/data
+```
 
 ## Difficultés rencontrées ##
 

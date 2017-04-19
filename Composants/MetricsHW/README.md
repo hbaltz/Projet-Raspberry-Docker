@@ -20,7 +20,7 @@ Il est composé d'un fichier docker-compose.yaml utilisant :
 
 ### Composition du docker-compose sur ordinateur ###
 
-```
+```yml
 grafana:
   image: grafana/grafana:4.1.1-1484211277
   volumes:
@@ -62,7 +62,7 @@ Nous avons :
 *telegraf:1.2.0-alpine* devient *tcoupin/rpi-telegraf:1.2.1*  
 
 ### Composition du docker-compose sur RPI ###
-```
+```yml
   influxdb:
     image: hypriot/rpi-influxdb:1.1.1
     volumes:
