@@ -28,7 +28,7 @@ Plusieurs solutions existent :
 Il est nécessaire de commencer par déployer les réseaux virtuels entre les composants.
 
 ###### NOT WORKING FOR NOW
-En principe, une stack peut servir à configurer les networks. Malheureusement, nos tentatives sont restées infructueuses car la stack ne veut pas déployer de network sans déployer un service. Nous avons contourner ce problème par une [solution manuelle](######REMOVE-FOLLOWING-SECTION-WHEN-WORKING).
+En principe, une stack peut servir à configurer les networks. Malheureusement, nos tentatives sont restées infructueuses car la stack ne veut pas déployer de network sans déployer un service. Nous avons contourner ce problème par une [solution manuelle](#REMOVE-FOLLOWING-SECTION-WHEN-WORKING).
 
 Pour cela, il suffit de déployer la stack networks comme suit :
 ```
