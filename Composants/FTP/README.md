@@ -1,4 +1,7 @@
-# FTP
+# File Transfer Protocol
+
+FTP est un protocole de communication destiné au partage de fichiers sur un réseau TCP/IP. Il permet de copier des fichiers vers une autre machine du réseau ou encore de accéder/modifier/supprimer des fichiers sur une machine. 
+
 ## Construction de l'image
 ```
 docker build --label rpi-proftpd --tag tcoupin /home/pirate
