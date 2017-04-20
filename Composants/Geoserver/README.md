@@ -2,7 +2,7 @@
 
 ## Description ##
 
-Serveur open-source nous proposant le service WMS vecteur
+Serveur open-source fournissant un service WMS vecteur
 
 ## Lien avec les autres composants ##
 
@@ -22,14 +22,14 @@ Il y a plusieurs exemples fonctionnels comme :
 
 Documentation sur ce [lien](http://blog.sortedset.com/gis-tiny-box-geoserver-raspberry-pi/)
 
-Pour l'implémenation sur Raspberry, il faut :
+Pour l'implémentation sur Raspberry, il faut :
 - Java 1.8
 - Tomcat7 (ligne de commande + variable d'environnement JAVA_HOME)
 - Geoserver (zip)
 - Lancer Tomcat7 puis aller sur [http://localhost:8080/geoserver/](http://localhost:8080/geoserver/)
 
 
-Adapatation de [https://github.com/daveb1034/R_Pi_Geo](https://github.com/daveb1034/R_Pi_Geo) :
+Adaptation de [https://github.com/daveb1034/R_Pi_Geo](https://github.com/daveb1034/R_Pi_Geo) :
 
 > Création des répertoires de partage
 
