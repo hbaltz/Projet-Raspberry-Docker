@@ -1,4 +1,7 @@
 # GlusterFS
+GlusterFS est un système de fichier partagé scalable. Il permet d'agréger la mémoire physique de plusieurs machines connectées pour étendre une mémoire 'virtuelle' plus importante. 
+
+
 ## Installer GlusterFS Server sur chaque Raspberry
 ```
 sudo apt-get install glusterfs-server
