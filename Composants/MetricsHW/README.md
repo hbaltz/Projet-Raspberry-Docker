@@ -6,7 +6,7 @@ Nous nous intéressons à des métriques concernant les RPI : le CPU du système
 
 ## Lien avec les autres composants ##
 
-Les autres composants vont utiliser de la mémoire, du réseau ou d'autres besoins physiques. C'est ces information-ci que nous allons observer au cours du temps.
+Les autres composants vont utiliser de la mémoire, du réseau ou d'autres besoins physiques. Ce sont ces informations-ci que nous allons observer au cours du temps.
 
 ## Documentation ##
 ### Solution utilisée ##
@@ -14,7 +14,7 @@ Les autres composants vont utiliser de la mémoire, du réseau ou d'autres besoi
 Récupération du Tp de TCoupin : .../tp_asi_ensg/examples/03-system-probe
 
 Il est composé d'un fichier docker-compose.yaml utilisant :
-- Gafana pour l'affichage
+- Grafana pour l'affichage
 - Influxdb pour sauver les métriques
 - Telegraph pour les récupérer
 
@@ -40,11 +40,11 @@ telegraf:
   links:
     - influxdb
 ```
-'build' fait appelle au dossier telegraf contenant un Dockerfile et un fichier de configuration de telegraf appelé dans le Dockerfile.
+'build' fait appel au dossier telegraf contenant un Dockerfile et un fichier de configuration de telegraf appelé dans le Dockerfile.
 
 Grafana et Telegraf sont reliés à Influxbd pour communiquer les métriques.
 
-### Adaptation sur un ordi ###
+### Adaptation sur un ordinateur ###
 
 Ajout des ports pour influxBD :
 - 8083 : Visualisation
@@ -53,8 +53,8 @@ Ajout des ports pour influxBD :
 ### Adaptation sur un RPI ###
 
 Passage au ARM :  
-Il faut utiliser des images faites pour les RPI et compatible.  
-Nous pouvons les chercher dans hub.docker.com ou les créer les rpi-images dont nous avons besoin.
+Il faut utiliser des images faites pour les RPI et compatibles.  
+Nous pouvons les chercher dans hub.docker.com ou créer les rpi-images dont nous avons besoin.
 
 Nous avons :  
 *grafana/grafana:4.1.1-1484211277* devient *dilgerm/rpi-grafana:2.6.0*  
@@ -113,7 +113,7 @@ nano telegraf.conf
 
 ### Utilisation de Grafana ###
 #### Configuration de 'Data Source' ####
-En allant sur piensg003 (ou piensg017.ensg.eu si dans le registry), connecter avec admin puis ajouter data source comme :  
+Se connecter en tant qu'admin sur piensg003 (ou piensg017.ensg.eu si dans le registry) puis ajouter data source comme :  
 ![Grafana data source](./Images/Grafana_data.png)
 
 #### Ajout d'un 'Dashboard' ####
@@ -127,7 +127,8 @@ Création du dashboard :
 
 ## Vulnérabilités ##
 
-Pas de déploiement d'Influxdb
+Influxdb est un service qui se lance sur un seul noeud du swarm.
+Pas de multi-déploiement d'Influxdb donc si le noeud vient à tomber, le service Influxdb est inaccessible le temps qu'il se redéploie sur un autre noeud.
 
 ## Difficultés rencontrées ##
 
