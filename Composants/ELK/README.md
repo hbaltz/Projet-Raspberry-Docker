@@ -1,4 +1,11 @@
 # Elasticsearch Logstash Kibana
+
+- Logstash : Analyse des données brutes
+- Elasticsearch : Stockage de toutes les données 
+- Kibana : interface web pour graphiques et statistiques
+
+Ces trois outils ont chacun un rôle bien précis dans le workflow permettant de passer des logs bruts au format text à des dashboards avec graphiques et statistiques. Ils montreront de manière synthétique le contenu des logs.
+
 ## Téléchargement des images
 ```
 docker pull ind3x/rpi-elasticsearch
